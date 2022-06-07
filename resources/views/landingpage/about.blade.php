@@ -58,9 +58,10 @@
         <div class="container ">
             <div class="text-center ">
                 <h2 class="section-heading text-uppercase">About</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <hr>
+                {{-- <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3> --}}
             </div>
-            <h2 class="text-center">Profil</h2>
+            <h5 class="text-center">Profil</h5>
             @if ($profile !== null)
                 <p>{!! $profile->profile !!}</p>
             @endif
@@ -68,18 +69,18 @@
 
 
             <!-- visi&misi -->
-            <h2 class="text-center mt-3">Visi dan Misi</h2>
-            <h3>Visi</h3>
+            <h5 class="text-center mt-3">Visi dan Misi</h5>
+            <h6>Visi</h6>
             @if($visimisi)
             <p> {!! $visimisi->visi !!}</p>
             @endif
-            <h3>Misi</h3>
+            <h6>Misi</h6>
             @if($visimisi)
             <p> {!! $visimisi->misi !!}</p>
             @endif
         </div>
         <!-- foto Organisasi -->
-        <h2 class="text-center mt-4 mb-3">Foto Organisasi</h2>
+        <h5 class="text-center mt-4 mb-3">Foto Organisasi</h5>
 
         <div id="carouselExampleCaptions" class="carousel slide ms-5 me-5" data-bs-ride="carousel">
 
@@ -124,7 +125,7 @@
             </button>
         </div>
         <!-- foto Kegiatan -->
-        <h2 class="text-center mt-4 mb-3">Foto Kegiatan</h2>
+        <h5 class="text-center mt-4 mb-3">Foto Kegiatan</h5>
 
         <div id="carouselExampleCaptions1" class="carousel slide ms-5 me-5" data-bs-ride="carousel">
 
