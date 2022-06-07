@@ -40,8 +40,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Visi</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('visi') is-invalid @enderror"
-                                                    name="visi" id="visi" autofocus>
+                                                <input type="hidden" class="form-control @error('visi') is-invalid @enderror"
+                                                    name="visi" id="visi">
+                                                <trix-editor input="visi"></trix-editor>
                                                 <span class="messages invalid-feedback">
                                                     @error('visi')
                                                         {{ $message }}
@@ -52,8 +53,9 @@
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label">Misi</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('misi') is-invalid @enderror"
+                                                <input type="hidden" class="form-control @error('misi') is-invalid @enderror"
                                                     name="misi" id="misi">
+                                                <trix-editor input="misi"></trix-editor>
                                                 <span class="messages invalid-feedback">
                                                     @error('misi')
                                                         {{ $message }}

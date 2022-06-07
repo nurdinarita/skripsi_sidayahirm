@@ -37,7 +37,7 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'deskripsi' => 'required',
+            'profile' => 'required',
         ]);
         Profile::create($validatedData);
         return redirect('profile');
@@ -75,7 +75,7 @@ class ProfileController extends Controller
     {
         $data = Profile::where('id', $id)->first();
         $validatedData = $request->validate([
-            'deskripsi' => 'required',
+            'profile' => 'required',
         ]);
         $data->update($validatedData);
         return redirect('profile');

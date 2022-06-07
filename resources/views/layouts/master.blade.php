@@ -45,6 +45,11 @@
     <script type="text/javascript" src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
     </script>
 
+    <!-- Trix Editor -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('trix-editor/trix.css') }}">
+    <script type="text/javascript" src="{{ asset('trix-editor/trix.js') }}"></script>
+
+
 
 </head>
 

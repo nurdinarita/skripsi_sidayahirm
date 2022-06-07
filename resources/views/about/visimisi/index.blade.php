@@ -48,18 +48,18 @@
                                         <table id="simpletable" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>No.</th>
-                                                    <th>Visi</th>
-                                                    <th>Misi</th>
-                                                    <th>Aksi</th>
+                                                    <th class="col-1">No.</th>
+                                                    <th class="col-5">Visi</th>
+                                                    <th class="col-5">Misi</th>
+                                                    <th class="col-1">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($visimisi as $vm)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $vm->visi }}</td>
-                                                        <td>{{ $vm->misi }}</td>
+                                                        <td>{!! substr($vm->visi, 0, 100) !!}</td>
+                                                        <td>{!! substr($vm->misi, 0, 100) !!}</td>
                                                         <td>
                                                             <a href="{{ route('visi-misi.edit', $vm->id) }}"
                                                                 class="btn btn-warning icofont icofont-pencil-alt-5"

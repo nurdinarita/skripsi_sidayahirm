@@ -62,7 +62,7 @@
             </div>
             <h2 class="text-center">Profil</h2>
             @if ($profile !== null)
-                <p>{{ $profile->deskripsi }}</p>
+                <p>{!! $profile->profile !!}</p>
             @endif
 
 
@@ -70,14 +70,13 @@
             <!-- visi&misi -->
             <h2 class="text-center mt-3">Visi dan Misi</h2>
             <h3>Visi</h3>
-            @foreach ($visimisi as $vm)
-                <p> {{ $loop->iteration . ' . ' . $vm->visi }}</p>
-            @endforeach
-
+            @if($visimisi)
+            <p> {!! $visimisi->visi !!}</p>
+            @endif
             <h3>Misi</h3>
-            @foreach ($visimisi as $vm)
-                <p> {{ $loop->iteration . ' . ' . $vm->misi }}</p>
-            @endforeach
+            @if($visimisi)
+            <p> {!! $visimisi->misi !!}</p>
+            @endif
         </div>
         <!-- foto Organisasi -->
         <h2 class="text-center mt-4 mb-3">Foto Organisasi</h2>

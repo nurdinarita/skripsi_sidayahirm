@@ -19,7 +19,7 @@ class LandingPageController extends Controller
     {
         return view('landingpage.about', [
             'foto_organisasi' => FotoOrganisasi::all(),
-            'visimisi' => VisiMisi::all(),
+            'visimisi' => VisiMisi::latest()->first(),
             'profile' => Profile::all()->first(),
             'foto_kegiatan' => FotoKegiatan::all(),
 

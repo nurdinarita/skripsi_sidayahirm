@@ -40,11 +40,12 @@
                                         @method('PATCH')
                                         @csrf
                                         <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label">Deskripsi</label>
+                                            <label class="col-sm-2 col-form-label">Profile</label>
                                             <div class="col-sm-10">
-                                                <input type="text"
-                                                    class="form-control @error('deskripsi') is-invalid @enderror"
-                                                    name="deskripsi" id="nik" value="{{ $profile->deskripsi }}">
+                                                <input type="hidden"
+                                                class="form-control @error('profile') is-invalid @enderror"
+                                                name="profile" id="profile" value="{!! $profile->profile !!}">
+                                                <trix-editor input="profile"></trix-editor>
                                                 <span class="messages invalid-feedback">
                                                     @error('deskripsi')
                                                         {{ $message }}

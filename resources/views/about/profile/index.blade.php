@@ -50,15 +50,17 @@
                                         <table id="simpletable" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th>Deskripsi </th>
+                                                    <th>Profile </th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @if ($profile !== null)
                                                     <tr>
-                                                        <td>{{ $profile->deskripsi }}</td>
+                                                        <td>{!! substr($profile->profile, 0, 120) !!}</td>
                                                         <td>
+                                                            {{-- <a href="{{ route('profile.show', $profile->id) }}" class="btn btn-primary icofont icofont-eye"></a> --}}
+
                                                             <a href="{{ route('profile.edit', $profile->id) }}"
                                                                 class="btn btn-warning icofont icofont-pencil-alt-5"
                                                                 title="Edit"></a>
