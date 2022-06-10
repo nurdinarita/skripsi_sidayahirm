@@ -17,6 +17,7 @@ class PelajaranController extends Controller
      */
     public function index()
     {
+        // return Pelajaran::find(5)->kelas->kelas;
         $pelajaran = Pelajaran::with(["kelas"])->get();
         $jumlah_pelajaran = $pelajaran->count();
         return view('pelajaran.index', compact('pelajaran', 'jumlah_pelajaran'));

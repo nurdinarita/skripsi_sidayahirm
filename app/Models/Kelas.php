@@ -11,4 +11,9 @@ class Kelas extends Model
     protected $table = 'kelas';    
     protected $guarded = [];
 
+    function pelajaran()
+    {
+        return $this->hasMany(Pelajaran::class);
+    }
+
 }

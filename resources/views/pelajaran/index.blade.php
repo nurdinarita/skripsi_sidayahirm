@@ -63,7 +63,7 @@
                                         @foreach($pelajaran as $pl)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$pl->id_kelas}}</td>
+                                            <td>{{$pl->kelas->kelas}}</td>
                                             <td>{{$pl->hari}}</td>
                                             <td>{{$pl->mapel}}</td>
                                             <td>{{$pl->judul_kitab}}</td>
