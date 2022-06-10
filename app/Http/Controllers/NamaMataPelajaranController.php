@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact;
+use App\Models\NamaMataPelajaran;
 
-class ContactController extends Controller
+class NamaMataPelajaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
-        return view('contact.index', compact('contacts'));
+        $namamatapelajaran = NamaMataPelajaran::all();
+        $jumlah_nama_mata_pelajaran = $namamatapelajaran->count();
+        return view('namamatapelajaran.index', compact('namamatapelajaran', 'jumlah_nama_mata_pelajaran'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('namamatapelajaran.create');
     }
 
     /**
@@ -36,8 +37,11 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        Contact::create(request()->all());
-        return redirect('/#contact');
+        $this->validate($request, [
+            'nama_mata_pelajaran' => 'required'
+        ]);
+        $namamatapelajaran = NamaMataPelajaran::create($request->all());
+        return redirect()->route('namamatapelajaran.index');
     }
 
     /**
@@ -59,7 +63,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $namamatapelajaran = NamaMataPelajaran::find($id);
+        return view('namamatapelajaran.edit', ['namamatapelajaran' => $namamatapelajaran]);
     }
 
     /**
@@ -71,7 +76,9 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $namamatapelajaran = NamaMataPelajaran::find($id);
+        $namamatapelajaran->update($request->all());
+        return redirect()->route('namamatapelajaran.index');
     }
 
     /**
@@ -82,7 +89,7 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        Contact::destroy($id);
-        return redirect()->route('contact.index');
+        NamaMataPelajaran::destroy($id);
+        return redirect()->route('namamatapelajaran.index');
     }
 }

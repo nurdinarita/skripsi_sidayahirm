@@ -22,6 +22,7 @@ use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisiMisiController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NamaMataPelajaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,4 +81,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('foto-organisasi', FotoOrganisasiController::class);
     Route::resource('foto-kegiatan', FotoKegiatanController::class);
     Route::resource('contact', ContactController::class);
+    Route::resource('namamatapelajaran', NamaMataPelajaranController::class);
 });

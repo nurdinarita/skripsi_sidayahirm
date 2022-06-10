@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelas;
 use App\Models\Pelajaran;
 use App\Models\Kitab;
+use App\Models\NamaMataPelajaran;
 use Illuminate\Http\Request;
 
 class PelajaranController extends Controller
@@ -30,7 +31,8 @@ class PelajaranController extends Controller
     {
         $kelas = Kelas::all(['kelas', 'id']);
         $kitab = Kitab::all(['judul_kitab', 'id']);
-        return view('pelajaran.create', compact('kelas'), compact('kitab'));
+        $namamatapelajaran = NamaMataPelajaran::all();
+        return view('pelajaran.create', compact('kelas'), compact('kitab', 'namamatapelajaran'));
     }
 
     /**
@@ -72,7 +74,10 @@ class PelajaranController extends Controller
     {
         $pelajaran = Pelajaran::find($id);
         $kls = Pelajaran::find($id)->kelas;
-        return view('pelajaran.edit', compact('pelajaran', 'kls'));
+        $namamatapelajaran = NamaMataPelajaran::all();
+        $kitab = Kitab::all();
+        $kelas = Kelas::all(['kelas', 'id']);
+        return view('pelajaran.edit', compact('pelajaran', 'kls', 'namamatapelajaran', 'kitab', 'kelas'));
     }
 
     /**

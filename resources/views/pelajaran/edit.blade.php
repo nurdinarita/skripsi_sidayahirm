@@ -41,7 +41,14 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Kelas</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="id_kelas" id="id_kelas" value="{{$pelajaran->id_kelas}}">
+                                            <select class="form-control @error('id_kelas') is-invalid @enderror" name="id_kelas" id="id_kelas">
+                                                <option value="">Pilih Kelas</option>
+                                                @foreach($kelas as $kls)
+                                                <option value="{{$kls->id}}" @if($kls->id == $pelajaran->id_kelas)
+                                                    selected
+                                                @endif>{{$kls->kelas}}</option>
+                                                @endforeach
+                                            </select>
                                             <span class="messages"></span>
                                         </div>
                                     </div>
@@ -70,14 +77,26 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Mata Pelajaran</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="mapel" id="mapel" value="{{$pelajaran->mapel}}">
+                                                <select class="form-control @error('mapel') is-invalid @enderror" name="mapel" id="mapel">
+                                                <option value="">Pilih Mata Pelajaran</option>
+                                                @foreach($namamatapelajaran as $nmp)
+                                                <option value="{{$nmp->nama_mata_pelajaran}}" @if($nmp->nama_mata_pelajaran === $pelajaran->mapel) selected @endif >{{$nmp->nama_mata_pelajaran}}</option>
+                                                @endforeach
+                                            </select>
                                             <span class="messages"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Judul Kitab</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="judul_kitab" id="judul_kitab" value="{{$pelajaran->judul_kitab}}">
+                                            <select class="form-control @error('judul_kitab') is-invalid @enderror" name="judul_kitab" id="judul_kitab">
+                                                <option value="" selected>Pilih Judul Kitab</option>
+                                                @foreach($kitab as $ktb)
+                                                <option value="{{$ktb->judul_kitab}}" @if($ktb->judul_kitab == $pelajaran->judul_kitab)
+                                                    selected
+                                                @endif>{{$ktb->judul_kitab}}</option>
+                                                @endforeach
+                                            </select>
                                             <span class="messages"></span>
                                         </div>
                                     </div>

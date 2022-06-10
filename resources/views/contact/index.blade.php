@@ -9,8 +9,8 @@
                     <div class="page-header-title">
                         <i class="icofont icofont-table bg-c-blue"></i>
                         <div class="d-inline">
-                            <h4>Data Pendidik</h4>
-                            <span>Data Pendidik Dayah Istiqamatuddin Raudhatul Mu'arrif</span>
+                            <h4>Contact Us</h4>
+                            {{-- <span>Data Contact Us Dayah Istiqamatuddin Raudhatul Mu'arrif</span> --}}
                         </div>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
                         <ul class="breadcrumb-title">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="{{ route('pendidik.index')}}">Data Pendidik</a>
+                            <li class="breadcrumb-item"><a href="{{ route('contact.index')}}">Contact Us</a>
                             </li>
                         </ul>
                     </div>
@@ -36,9 +36,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>Data Pendidik</h5>
-                            <div class="card-header-right"><i class="icofont icofont-spinner-alt-5"></i>
-                                <a href="{{ route('pendidik.create')}}" class="btn btn-primary ">Tambah Data</a>
-                            </div>
                         </div>
                         <div class="card-block">
                             <div class="dt-responsive table-responsive">
@@ -46,40 +43,27 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>NIK</th>
                                             <th>Nama</th>
-                                            <th>Gender</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Tempat Lahir</th>
-                                            <th>Alamat</th>
-                                            <th>NPWP</th>
-                                            <th>Pendidikan Terakhir</th>
-                                            <th>Riwayat Pendidikan Terakhir</th>
-                                            <th>Mata Pelajaran</th>
-                                            <!-- <th>Judul Kitab</th> -->
+                                            <th>Email</th>
+                                            <th>Nomor Telepon/HP</th>
+                                            <th class="col-4">Pesan</th>
                                             <th>Aksi</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($pendidik as $p)
+                                        @foreach($contacts as $c)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$p->nik}}</td>
-                                            <td>{{$p->nama}}</td>
-                                            <td>{{$p->gender}}</td>
-                                            <td>{{$p->tanggal_lahir}}</td>
-                                            <td>{{$p->tempat_lahir}}</td>
-                                            <td>{{$p->alamat}}</td>
-                                            <td>{{$p->npwp}}</td>
-                                            <td>{{$p->pendidikan_terakhir}}</td>
-                                            <td>{{$p->riwayat_pendidikan_terakhir}}</td>
-                                            <td>{{$p->mapel->mapel}}</td>
+                                            <td>{{$c->name}}</td>
+                                            <td>{{$c->email}}</td>
+                                            <td>{{$c->phone}}</td>
+                                            <td>{{$c->message}}</td>
                                             <td>
                                                 <div class="row">
                                                     <div class="col-2">
                                                         <!-- <button type="submit" class="btn btn-danger icofont icofont-ui-delete" title="Hapus"></button> -->
-                                                        <button type="button" class="btn btn-danger icofont icofont-ui-delete" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('pendidik.destroy', $p->id) }}" title="hapus"></button>
+                                                        <button type="button" class="btn btn-danger icofont icofont-ui-delete" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('contact.destroy', $c->id)}}" title="hapus"></button>
                                                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
@@ -94,20 +78,16 @@
                                                                         <p>APAKAH ANDA YAKIN INGIN MENGHAPUS DATA INI?</p>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                            <form method="post">
+                                                                        <form method="post">
                                                                                 @csrf
                                                                                 @method('delete')
-                                                                                <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">No</button>
-                                                                                <button type="submit" class="btn btn-primary waves-effect waves-light ">Yes</button>
-                                                                            </form>
+                                                                            <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">No</button>
+                                                                            <button type="submit" class="btn btn-primary waves-effect waves-light ">Yes</button>
+                                                                        </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <a href="{{ route('pendidik.edit', $p->id)}}" class="btn btn-warning icofont icofont-pencil-alt-5" title="Edit"></a>
-                                                            <a href="{{ route('pendidik.show', $p->id)}}" class="btn btn-info icofont icofont icofont-ui-zoom-in" title="Detail"></a>
-                                                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" class="btn btn-info icofont icofont icofont-ui-zoom-in" title="Detail"></button> -->
-
                                                     </div>
                                                 </div>
                                             </td>
@@ -117,23 +97,16 @@
                                     <tfoot>
                                         <tr>
                                             <th>#</th>
-                                            <th>NIK</th>
                                             <th>Nama</th>
-                                            <th>Gender</th>
-                                            <th>Tanggal Lahir</th>
-                                            <th>Tempat Lahir</th>
-                                            <th>Alamat</th>
-                                            <th>NPWP</th>
-                                            <th>Pendidikan Terakhir</th>
-                                            <th>Riwayat Pendidikan Terakhir</th>
-                                            <th>Mata Pelajaran</th>
-                                            <!-- <th>Judul Kitab</th> -->
+                                            <th>Email</th>
+                                            <th>Nomor Telepon/HP</th>
+                                            <th>Pesan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                 </table>
                                 <div class="pull-left">
-                                    <strong>Jumlah Pendidik : {{ $jumlah_pendidik }}</strong>
+                                    {{-- <strong>Jumlah Pesan : {{ $jumlah_pendidik }}</strong> --}}
                                 </div>
                             </div>
                         </div>

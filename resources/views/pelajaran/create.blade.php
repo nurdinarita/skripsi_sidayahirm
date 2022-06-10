@@ -73,7 +73,13 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Mata Pelajaran</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="mapel" id="mapel">
+                                            {{-- <input type="text" class="form-control" name="mapel" id="mapel"> --}}
+                                            <select class="form-control @error('mapel') is-invalid @enderror" name="mapel" id="mapel">
+                                                <option value="" selected>Pilih Mata Pelajaran</option>
+                                                @foreach($namamatapelajaran as $nmp)
+                                                <option value="{{$nmp->nama_mata_pelajaran}}">{{$nmp->nama_mata_pelajaran}}</option>
+                                                @endforeach
+                                            </select>
                                             <span class="messages"></span>
                                         </div>
                                     </div>
