@@ -90,11 +90,9 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        <form action="" method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="button" class="btn btn-danger icofont icofont-ui-delete" data-toggle="modal" data-target="#default-Modal" title="hapus"></button>
-                                                            <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
+                                                        
+                                                            <button type="button" class="btn btn-danger icofont icofont-ui-delete" data-toggle="modal" data-target="#deleteModal" data-url="{{ route("user.destroy", $u->id) }}" title="hapus"></button>
+                                                            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -108,15 +106,19 @@
                                                                             <p>APAKAH ANDA YAKIN INGIN MENGHAPUS DATA INI?</p>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">No</button>
-                                                                            <button type="submit" class="btn btn-primary waves-effect waves-light ">Yes</button>
+                                                                            <form method="post">
+                                                                                @csrf
+                                                                                @method('delete')
+                                                                            <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">No</button>
+                                                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Yes</button>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <a href="" class="btn btn-warning icofont icofont-pencil-alt-5" title="Edit"></a>
-                                                            <a href="" class="btn btn-info icofont icofont icofont-ui-zoom-in" title="Detail"></a>
-                                                        </form>
+                                                            <a href="#" class="btn btn-warning icofont icofont-pencil-alt-5" data-toggle="modal" data-target="#editModal" data-url="{{ route( 'user.update',$u->id) }}" data-name="{{ $u->name }}" data-email="{{ $u->email }}" data-role="{{ $u->role }}" title="Edit"></a>
+                                                            {{-- <a href="" class="btn btn-info icofont icofont icofont-ui-zoom-in" title="Detail"></a> --}}
+                                                        
                                                     </div>
                                                 </div>
                                             </td>
@@ -172,7 +174,9 @@
                     </div>
                     <div class="form-group">
                         <label for="account_status">Status Akun</label>
-                        <select class="form-control" name="account_status">
+                        <select class="form-control" name="account_status" required>
+                            <option value="">-- Pilih Status Akun --</option>
+                            <option value="Admin">Admin</option>
                             <option value="Pimpinan">Pimpinan</option>
                             <option value="Pengajar">Pengajar</option>
                         </select>
@@ -194,4 +198,82 @@
         </div>
     </div>
 </div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST">
+                    @csrf
+                    @method('put')
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama</label>
+                        <input type="text" name="nama" class="form-control" placeholder="Masukkan nama" id="nama">
+                    </div>
+                    <div class="form-group">
+                        <label for="account_status">Status Akun</label>
+                        <select class="form-control" name="account_status" id="editRole" required>
+                            <option value="">-- Pilih Status Akun --</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Pimpinan">Pimpinan</option>
+                            <option value="Pengajar">Pengajar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Confirm Password</label>
+                        <input type="password" name="confirm_password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('script-hapus')
+<script>
+    $('#deleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var url = button.data('url') // Extract info from data-* attributes
+       
+        var modal = $(this)
+
+        modal.find('.modal-footer form').attr("action", url)
+    })
+
+    $('#editModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var url = button.data('url') // Extract info from data-* attributes
+        var email = button.data('email') // Extract info from data-* attributes
+        var nama = button.data('name') // Extract info from data-* attributes
+        var role = button.data('role') // Extract info from data-* attributes
+       
+        var modal = $(this)
+
+        modal.find('.modal-body form').attr("action", url)
+        modal.find('.modal-body #email').attr("value", email)
+        modal.find('.modal-body #nama').attr("value", nama)
+        modal.find('.modal-body #editRole').attr("value", role)
+    })
+</script>
 @endsection

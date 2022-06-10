@@ -30,6 +30,7 @@ class PendidikController extends Controller
      */
     public function create()
     {
+        
         $pelajaran = Pelajaran::all();
         $kitab = Kitab::all();
         return view('pendidik.create', compact('pelajaran', 'kitab'));
@@ -44,7 +45,7 @@ class PendidikController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nik' => ['required', 'unique:pendidik'],
+            'nik' => ['required'],
             'nama' => 'required',
             'gender' => 'required',
             'tanggal_lahir' => 'required|date',
@@ -54,7 +55,7 @@ class PendidikController extends Controller
             'pendidikan_terakhir' => 'required',
             'riwayat_pendidikan_terakhir' => 'required',
             'id_mapel' => 'required',
-            'id_judul_kitab' => 'required',
+            // 'id_judul_kitab' => 'required',
         ]);
 
         $pendidik = Pendidik::create([
@@ -68,7 +69,7 @@ class PendidikController extends Controller
             'pendidikan_terakhir' => $request->pendidikan_terakhir,
             'riwayat_pendidikan_terakhir' => $request->riwayat_pendidikan_terakhir,
             'id_mapel' => $request->id_mapel,
-            'id_judul_kitab' => $request->id_judul_kitab,
+            'id_judul_kitab' => $request->id_mapel,
         ]);
 
         return redirect()->route('pendidik.index');
@@ -95,8 +96,9 @@ class PendidikController extends Controller
     public function edit($id)
     {
         $pendidik = Pendidik::find($id);
+        $pelajaran = Pelajaran::all();
         $plj = Pendidik::find($id)->mapel;
-        return view('pendidik.edit', compact('pendidik', 'plj'));
+        return view('pendidik.edit', compact('pendidik', 'plj', 'pelajaran'));
     }
 
     /**

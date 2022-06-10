@@ -21,6 +21,7 @@ use App\Http\Controllers\FotoOrganisasiController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,4 +79,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('visi-misi', VisiMisiController::class);
     Route::resource('foto-organisasi', FotoOrganisasiController::class);
     Route::resource('foto-kegiatan', FotoKegiatanController::class);
+    Route::resource('contact', ContactController::class);
 });

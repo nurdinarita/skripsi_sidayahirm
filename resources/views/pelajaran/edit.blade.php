@@ -55,15 +55,15 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Hari</label>
                                         <div class="col-sm-10">
-                                            <select class="form-control" name="hari" id="hari" value="{{$pelajaran->hari}}">
-                                                <option value="" selected>Pilih Hari</option>
-                                                <option value="senin">Senin</option>
-                                                <option value="selasa">Selasa</option>
-                                                <option value="rabu">Rabu</option>
-                                                <option value="kamis">Kamis</option>
-                                                <option value="jumat">Jumat</option>
-                                                <option value="sabtu">Sabtu</option>
-                                                <option value="minggu">Minggu</option>
+                                            <select class="form-control" name="hari" id="hari">
+                                                <option value="">Pilih Hari</option>
+                                                <option value="senin" @if($pelajaran->hari === 'Senin') selected @endif>Senin</option>
+                                                <option value="selasa" @if($pelajaran->hari === 'Selasa') selected @endif>Selasa</option>
+                                                <option value="rabu" @if($pelajaran->hari === 'Rabu') selected @endif>Rabu</option>
+                                                <option value="kamis" @if($pelajaran->hari === 'Kamis') selected @endif>Kamis</option>
+                                                <option value="jumat" @if($pelajaran->hari === 'Jumat') selected @endif>Jumat</option>
+                                                <option value="sabtu" @if($pelajaran->hari === 'Sabtu') selected @endif>Sabtu</option>
+                                                <option value="minggu" @if($pelajaran->hari === 'Minggu') selected @endif>Minggu</option>
                                             </select>
                                         </div>
                                     </div>

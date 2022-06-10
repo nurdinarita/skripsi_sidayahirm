@@ -129,6 +129,13 @@
 
                 </ul>
             </li>
+            <li class="">
+                <a href="{{ route('contact.index') }}">
+                    <span class="pcoded-micon"><i class="ti-headphone-alt"></i><b>AC</b></span>
+                    <span class="pcoded-mtext" data-i18n="nav.advance-components.main">Contact Us</span>
+                    <span class="pcoded-mcaret"></span>
+                </a>
+            </li>
         @endif
 
         @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'Pimpinan')

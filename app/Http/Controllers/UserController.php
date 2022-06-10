@@ -85,7 +85,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+
     }
 
     /**
@@ -95,9 +95,33 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+            // Update data user to database 'users'
+            try{
+                $email = $request->input('email');
+                $nama = $request->input('nama');
+                $account_status = $request->input('account_status');
+                $password = $request->input('password');
+                $confirm_password = $request->input('confirm_password');
+                
+                if($password === $confirm_password){
+                    DB::table('users')->where('id', $id)
+                    ->update([
+                        'name' => $nama,
+                        'email' => $email,
+                        'role' => $account_status,
+                        'password' => bcrypt($password),
+                    ]);
+                
+                    return redirect()->back()->with('success', 'Berhasil mengupdate data');
+                }else{
+                    return redirect()->back()->with('error', 'Gagal mengupdate data, password tidak sama');
+                }
+            }catch(Exception $e){
+                //dd($e);
+                return redirect()->back()->with('error', 'Terjadi kesalahan. Harap cek error Log!');
+            }
     }
 
     /**
@@ -106,8 +130,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect()->route('user.index');
     }
 }

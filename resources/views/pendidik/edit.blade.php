@@ -57,12 +57,16 @@
                                         <div class="col-sm-10">
                                             <div class="form-check form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input " type="radio" name="gender" id="gender-1" value="Laki-laki"> Laki-laki
+                                                    <input class="form-check-input " type="radio" name="gender" id="gender-1" value="Laki-laki" @if($pendidik->gender == 'Laki-laki')
+                                                        checked
+                                                    @endif > Laki-laki
                                                 </label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <label class="form-check-label">
-                                                    <input class="form-check-input " type="radio" name="gender" id="gender-2" value="Perempuan"> Perempuan
+                                                    <input class="form-check-input " type="radio" name="gender" id="gender-2" value="Perempuan" @if($pendidik->gender == 'Perempuan')
+                                                    checked
+                                                @endif> Perempuan
                                                 </label>
                                             </div>
 
@@ -75,94 +79,62 @@
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Tanggal Lahir</label>
                                         <div class="col-sm-10">
-                                            <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" value="{{$santri->tanggal_lahir}}">
+                                            <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" value="{{$pendidik->tanggal_lahir}}">
                                             <span class="messages"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Tempat Lahir</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="{{$santri->tempat_lahir}}">
+                                            <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="{{$pendidik->tempat_lahir}}">
                                             <span class="messages"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Alamat</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="alamat" id="alamat" value="{{$santri->alamat}}">
+                                            <input type="text" class="form-control" name="alamat" id="alamat" value="{{$pendidik->alamat}}">
                                             <span class="messages"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label"><b>Nama Orang Tua</b> </label>                                       
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Nama Ayah</label>
+                                        <label class="col-sm-2 col-form-label">NPWP</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="nama_ayah" id="nama_ayah" value="{{$santri->nama_ayah}}">
+                                            <input type="text" class="form-control" name="npwp" id="npwp" value="{{$pendidik->npwp}}">
                                             <span class="messages"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Nama Ibu</label>
+                                        <label class="col-sm-2 col-form-label">Pendidikan Terakhir</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="nama_ibu" id="nama_ibu" value="{{$santri->nama_ibu}}">
+                                            <input type="text" class="form-control" name="pendidikan_terakhir" id="pendidikan_terakhir" value="{{$pendidik->pendidikan_terakhir}}">
                                             <span class="messages"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Tahun Masuk</label>
+                                        <label class="col-sm-2 col-form-label">Riwayat Pendidikan Terakhir</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="tahun_masuk" id="tahun_masuk" value="{{$santri->tahun_masuk}}">
-                                            <span class="messages"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-2 col-form-label">Mukim</label>
-                                        <div class="col-sm-10">
-                                            <div class="form-check form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input " type="radio" name="mukim_tidak" id="gender-1" value="Ya"> Ya
-                                                </label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <label class="form-check-label">
-                                                    <input class="form-check-input " type="radio" name="mukim_tidak" id="gender-2" value="Tidak"> Tidak
-                                                </label>
-                                            </div>
-
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>$message</strong>
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Provinsi</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="provinsi" id="provinsi" value="{{$provinsi->provinsi}}">
-                                            <span class="messages"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Kabupaten</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="kabupaten" id="kabupaten" value="{{$kabupaten->kabupaten}}">
+                                            <input type="text" class="form-control" name="riwayat_pendidikan_terakhir" id="riwayat_pendidikan_terakhir" value="{{$pendidik->riwayat_pendidikan_terakhir}}">
                                             <span class="messages"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-2 col-form-label">Mata Pelajaran</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="mapel" id="mapel" value="{{$pendidik->mapel}}">
-                                            <span class="messages"></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-2 col-form-label">Judul Kitab</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" name="judul_kitab" id="judul_kitab" value="{{$pendidik->judul_kitab}}">
-                                            <span class="messages"></span>
+                                            <select class="form-control @error('mapel') is-invalid @enderror" name="id_mapel" id="mapel">
+                                                <option value="">Pilih Mata Pelajaran</option>
+                                                @foreach($pelajaran as $pl)
+                                                <option value="{{$pl->id}}" @if($pl->id == $pendidik->id_mapel)
+                                                    selected
+                                                @endif>{{ $pl->mapel }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('mapel')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                            <!-- <span class="messages"></span> -->
                                         </div>
                                     </div>
                                     <div class="form-group row">

@@ -60,11 +60,9 @@
                                             <td>
                                                 <div class="row">
                                                     <div class="col-2">
-                                                        <form action="{{ route('kelas.destroy', $k->id)}}" method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button type="button" class="btn btn-danger icofont icofont-ui-delete" data-toggle="modal" data-target="#default-Modal" title="hapus"></button>
-                                                            <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
+
+                                                            <button type="button" class="btn btn-danger icofont icofont-ui-delete" data-toggle="modal" data-target="#deleteModal" data-url="{{ route('kelas.destroy', $k->id) }}" title="hapus"></button>
+                                                            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -78,15 +76,18 @@
                                                                             <p>APAKAH ANDA YAKIN INGIN MENGHAPUS DATA INI?</p>
                                                                         </div>
                                                                         <div class="modal-footer">
+                                                                            <form method="post">
+                                                                                @csrf
+                                                                                @method('delete')
                                                                             <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">No</button>
                                                                             <button type="submit" class="btn btn-primary waves-effect waves-light ">Yes</button>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <a href="{{ route('kelas.edit', $k->id)}}" class="btn btn-warning icofont icofont-pencil-alt-5" title="Edit"></a>
                                                             <a href="{{ route('kelas.show', $k->id)}}" class="btn btn-info icofont icofont icofont-ui-zoom-in"  title="Detail"></a>
-                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -116,4 +117,17 @@
 </div>
 
 
+@endsection
+
+@section('script-hapus')
+<script>
+    $('#deleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var url = button.data('url') // Extract info from data-* attributes
+       
+        var modal = $(this)
+
+        modal.find('.modal-footer form').attr("action", url)
+    })
+</script>
 @endsection
